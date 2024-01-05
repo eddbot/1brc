@@ -45,7 +45,6 @@ func main() {
 		if ws, ok := weatherStations[name]; ok {
 			ws.aggregate += temperature
 			ws.count++
-			ws.mean = ws.aggregate / ws.count
 
 			if ws.min < temperature {
 				ws.min = temperature
@@ -77,7 +76,7 @@ func main() {
 
 		station := weatherStations[name]
 
-		fmt.Printf("%s:%.1f/%.1f/%.1f\n", name, station.min, station.mean, station.max)
+		fmt.Printf("%s:%.1f/%.1f/%.1f\n", name, station.min, station.aggregate/station.count, station.max)
 
 	}
 
